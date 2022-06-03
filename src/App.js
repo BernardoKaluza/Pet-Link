@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 import Home from './Containers/Home'
@@ -12,7 +12,9 @@ import Login from './Containers/Login'
 
 import Register from './Containers/Register';
 
-import Navigation from './components/navigation'
+import EscolhaClinica from './Containers/EscolhaClinica';
+
+import Navigation from './components/navigation';
 
 import { ThemeProvider, createTheme} from '@mui/material/styles';
 
@@ -49,7 +51,9 @@ function App() {
       <Route path='/Cart' element={<Cart/>} />
       <Route path='/Consultas' element={<Consultas/>} />
       <Route path='/Loja' element={<Loja/>} />
-      <Route path='/Marcacoes' element={<Marcacoes/>} />
+      <Route path='/Marcacoes' element={<Marcacoes />} />
+      <Route path='/EscolhaClinica' element={<EscolhaClinica/>} />
+
       
 
       </Routes>

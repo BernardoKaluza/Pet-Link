@@ -147,7 +147,7 @@ export default function Navigation() {
                 </ListItemButton>
             </Link>
             {/* --------------------------------------ITEM DA SIDEBAR-------------------------------------------------------- */}
-            <Link to={'/Marcacoes'} style={{textDecoration: 'inherit', color: 'inherit'}}>
+            <Link to={'/EscolhaClinica'} style={{textDecoration: 'inherit', color: 'inherit'}}>
                 <ListItemButton
                 selected={selectedIndex === 1}
                 onClick={(event) => handleListItemClick(event, 1)}
