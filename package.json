@@ -1,7 +1,7 @@
 {
   "name": "PetLink",
   "version": "0.1.0",
-  "homepage": "https://bernardokaluza.github.io/maco",
+  "homepage": "https://bernardokaluza.github.io/Pet-Link",
   "private": true,
   "dependencies": {
     "@date-io/date-fns": "^2.14.0",

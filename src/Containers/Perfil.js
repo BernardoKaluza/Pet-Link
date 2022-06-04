@@ -4,7 +4,7 @@ import Navbar2 from '../components/Navbar2'
 function Perfil ()  {
   return (
     <React.Fragment>
-      <Navbar2 />
+   
 
     <div
       style={{

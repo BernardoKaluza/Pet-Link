@@ -29,7 +29,7 @@ import { render } from "@testing-library/react";
 
 const drawerWidth = 240;
 
-export default function Navigation() {
+export default function Navigation(props) {
   const settings = ['Perfil', 'Logout'];
 
 
@@ -49,6 +49,7 @@ export default function Navigation() {
 
   const handleCloseUserMenu = (setting) => {
     setAnchorElUser(null);
+    
   };
 
 
@@ -103,7 +104,7 @@ export default function Navigation() {
                     </MenuItem>
                 </Link>
                 <Link to={'/Login'} style={{textDecoration: 'inherit', color: 'inherit'}}>
-                <MenuItem key={'Logout'} onClick={handleCloseUserMenu}>
+                <MenuItem key={'Logout'} onClick={ () => {handleCloseUserMenu(); props.setLogin(false)} }>
                   <Typography textAlign="center">{'Logout'}</Typography>
                 </MenuItem>
                 </Link>
@@ -127,7 +128,9 @@ export default function Navigation() {
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
+        <Toolbar >
+          
+        </Toolbar >
 
         <Divider />
 
@@ -139,11 +142,11 @@ export default function Navigation() {
 
             <Link to={'/Consultas'} style={{textDecoration: 'inherit', color: 'inherit'}}>
                 <ListItemButton selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)} >    {/*numero tem de ser diferente para o highlight funcionar */}
-                <ListItemIcon>
+                <ListItemIcon >
                     <CalendarMonthIcon /> {/*escolher icone*/}
                 </ListItemIcon>
                 
-                <ListItemText primary="Consultas" /> {/*CONSULTAS*/}
+                <ListItemText primary="Planos" /> {/*CONSULTAS*/}
                 </ListItemButton>
             </Link>
             {/* --------------------------------------ITEM DA SIDEBAR-------------------------------------------------------- */}

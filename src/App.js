@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 import Home from './Containers/Home'
@@ -15,6 +15,12 @@ import Register from './Containers/Register';
 import EscolhaClinica from './Containers/EscolhaClinica';
 
 import Navigation from './components/navigation';
+
+import DarConsulta from './Containers/DarConsulta';
+
+import VistaVeterinario from './Containers/VistaVeterinario';
+
+
 
 import { ThemeProvider, createTheme} from '@mui/material/styles';
 
@@ -33,13 +39,24 @@ const theme = createTheme({
 
 
 function App() {
-  const [login, setLogin] = React.useState(false);
+  
+    var local = (localStorage.getItem('login'))
+    if ( local === null) {
+      var [login, setLogin] = React.useState(false);
+      localStorage.setItem('login', false)
+    }
+    else {
+      var [login, setLogin] = React.useState(local);
+      localStorage.setItem('login', login)
+    }
+  
+ 
   return (
-
+   
     <ThemeProvider theme={theme}>
     <Router>
 
-     { true && <Navigation /> } {/* //! TROCAR PARA LOGIN */}
+     { login && <Navigation setLogin={setLogin} /> } {/* //! TROCAR PARA LOGIN */}
      
       <Routes>
 
@@ -53,6 +70,9 @@ function App() {
       <Route path='/Loja' element={<Loja/>} />
       <Route path='/Marcacoes' element={<Marcacoes />} />
       <Route path='/EscolhaClinica' element={<EscolhaClinica/>} />
+      <Route path='/DarConsulta' element={<DarConsulta/>} />
+      <Route path='/VistaVeterinario' element={<VistaVeterinario/>} />
+
 
       
 

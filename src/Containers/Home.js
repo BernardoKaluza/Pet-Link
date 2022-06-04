@@ -7,12 +7,20 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Pagination from '@mui/material/Pagination';
 import Paper from '@mui/material/Paper';
-
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import ChatBot from 'react-simple-chatbot';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 
 import { ThemeProvider } from 'styled-components';
 
 import Navigation from '../components/navigation'
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+
+import { useState, useEffect } from 'react';
+
 
 
 export default function Home () {
@@ -94,7 +102,7 @@ export default function Home () {
     {
       id: '10',
       user: true,
-      end: true,
+     trigger:'10'
     },
 
   ];
@@ -108,82 +116,156 @@ export default function Home () {
 
 
   const [page, setPage] = React.useState(1);
+  const [vacinapopup,toggleVacinaHook] = React.useState('false')
+  const [numeroAnimais,numeroAnimaisHook] = React.useState(parseInt(localStorage.getItem('numeroAnimais')))
+
   const handleChange = (event, value) => {
     setPage(value);
   };
 
+  const toggleVacina = () =>{
+    toggleVacinaHook(!vacinapopup)
+  }
+
+  useEffect(() => {  
+    localStorage.setItem('numeroAnimais',numeroAnimais)
+  });
+
+  const addAnimal = () =>{
+    let numAnimal= localStorage.getItem('numeroAnimais')
+    if (numAnimal==null){
+      numeroAnimaisHook(1)
+    }
+
+   
+    else if (numAnimal >=3){
+      numeroAnimaisHook(3)
+    }
+    else{
+      numeroAnimaisHook(numeroAnimais+1)
+    }
+    console.log(numeroAnimais)
+  }
+
+  const removerAnimal = () =>{
+    let numAnimal= localStorage.getItem('numeroAnimais')
+    if (numAnimal==null){
+      numeroAnimaisHook(1)
+    }
+    else if (numAnimal<=1){
+      numeroAnimaisHook(1)
+    }
+    else{
+      numeroAnimaisHook(numeroAnimais-1)
+    }
+    console.log(numeroAnimais)
+  }
+
   return(
     <>
   
-    <Grid container sx={{paddingLeft:'240px',border:1,paddingBottom:'1vw'}} spacing={1}>
+    <Grid container sx={{paddingLeft:'240px',border:0,paddingBottom:'1vw'}} spacing={1}>
 
-      <Grid sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={4}>
-        <Pagination count={3} page={page} onChange={handleChange} sx={{ display:"flex" }}/>
+      <Grid sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={8}>
+        <Pagination size="large" count={numeroAnimais} page={page} onChange={handleChange} sx={{ pl:'30vw',display:"flex" }}/>
       </Grid>
 
-      <Grid sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={2}>
-        <Button variant ="contained">
+      <Grid sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={2}>
+        <Button variant ="contained" onClick={addAnimal}>
           Adicionar Animal
         </Button>
       </Grid>
-      <Grid sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={2}>
-        <Button variant ="contained">
+      <Grid sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={2}>
+        <Button variant ="contained" onClick={removerAnimal}>
           Remover Animal
         </Button>
       </Grid>
-      <Grid sx={{border:1,alignItems:'center',justifyContent:'right',display:'flex',paddingRight:'3vw'}}item xs={4}>
-        <Button  variant ="contained">
-          Atualizar Dados
-        </Button>
-      </Grid>
+    
     </Grid>
 
-      <Grid container sx={{paddingLeft:'240px',border:1}}>
-        <Grid  sx={{backgroundImage: `url(${backgroundImage})`,height:'30vw', backgroundSize:'cover',border:1,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={5}>
-          {/* <img sx={{display:'flex' }}src={require("../image/husky.jpg")} /> */}
+      <Grid container sx={{paddingLeft:'240px',border:0}}>
+        <Grid  sx={{height:'30vw', backgroundSize:'cover',border:0,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={6}>
+          <Avatar variant ='square'sx={{height:'99%',width:'99%'}}src={require("../image/husky.jpg")} /> 
         </Grid>
-        <Grid sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex',pl:'1vw',pr:'1vw'}}item xs={4}>
+
+        <Grid sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex',pl:'1vw',pr:'1vw'}}item xs={6}>
           <Paper elevation={4} sx={{flex:1}}>
-            <Stack spacing ={2}>
-              <h2>Dados Animal:</h2>
-              <h2>    Peso : 15kg</h2>
-              <Stack sx={{alignItems:'center',justifyContent:'center',display:'flex'}} direction='row'><h2>Vacinado</h2>
-                <Avatar on sx={{display:'flex' }}src={require("../image/bell.png")} />
-              </Stack>
-              <h2>Dados Animal</h2>
-              <h2>Dados Animalllllllllllllllllllllll</h2>
-              <h2>Dados Animal</h2>
-            </Stack>
+           
+              <List>
+                <ListItem>
+                  <ListItemText
+                    primary="Dados:"
+                  />
+                  <Divider />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Nome:"
+                    secondary={'Fuzz'}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Peso:"
+                    secondary={'15kg'}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Última Consulta:"
+                    secondary={'04/06/2022'}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Chip?"
+                    secondary={'Sim'}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Raça:"
+                    secondary={'Husky'}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Espécie:"
+                    secondary={'Cão'}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Vacinas:"
+                    secondary= {<div onClick={toggleVacina}>
+                    <Avatar on sx={{display:'flex' }}src={require("../image/bell.png")} />
+                      <paper >
+                      <Dialog onClose={toggleVacina} open={!vacinapopup} >
+                        <DialogTitle>
+                            Vacinas
+                        </DialogTitle>
+                          <h2>Vacina 1</h2>
+                          <h2>Vacina 3</h2>
+                          <h2>Vacina 4</h2>
+                          <h2>Vacina 5</h2>
+  
+                       
+                       </Dialog>
+                       </paper>
+                  </div>}
+                  />
+                </ListItem>
+
+
+              </List  >
+
           </Paper>
         </Grid>
-        <Grid sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={3}>
-
-         <ThemeProvider theme={theme}>
-          <ChatBot steps={steps} floating={true} />;
+        </Grid>
+        <ThemeProvider theme={theme}>
+        <ChatBot  placeholder={"Escreva uma mensagem..."}  steps={steps} floating={true} />;
+         
        </ThemeProvider>
-    
-
-        </Grid>
-      </Grid>
-
-      <Grid container sx={{paddingLeft:'240px',border:1}}>
-        <Grid item sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex'}} xs={9}>
-          <h2>9</h2>
-        </Grid>
-        {/* <Grid container item sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex'}} xs={3} spacing={2}>
-            <Grid sx={{border:1}} item xs={6}>
-              <Button variant ="contained">
-                Conversas Anteriores
-              </Button>
-            </Grid>
-          <Grid sx={{paddingRight:'1vw'}}item xs={6}>
-            <Button  variant ="contained">
-              Contactar Veterinários
-            </Button>
-          </Grid>
-        </Grid> */}
-      </Grid>
-     
     </>
   )
 }

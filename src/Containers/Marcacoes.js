@@ -30,7 +30,6 @@ export default function Marcacoes (props) {
   let img= stores[(stores.map(store => store.Name)).indexOf(data)].url; //find url da imagem a meter no ecra fuck off       ref: vai ver o utentes.js na data
 
 
-
   return(
 
     <>

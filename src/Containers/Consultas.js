@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Pagination from '@mui/material/Pagination';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
-
+import { planos } from "../data/planos";
 
 
 
@@ -24,6 +24,8 @@ export default function Consultas () {
   const handleChange = (event, value) => {
     setPage(value);
   };
+  let nanimais = localStorage.getItem("numeroAnimais");
+  
 
   
   
@@ -32,24 +34,9 @@ export default function Consultas () {
     <>
       <Grid container sx={{paddingLeft:'240px',border:0}} spacing={1}>
         <Grid sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={4}>
-          <Pagination count={3} page={page} onChange={handleChange} sx={{ display:"flex" }}/>
+          <Pagination count={ nanimais } page={page} onChange={handleChange} sx={{ display:"flex" }}/>
         </Grid>
 
-        <Grid sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={2}>
-          <Button variant ="contained">
-            Adicionar Animal
-          </Button>
-        </Grid>
-        <Grid sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}item xs={2}>
-          <Button variant ="contained">
-            Remover Animal
-          </Button>
-        </Grid>
-        <Grid sx={{border:0,alignItems:'center',justifyContent:'right',display:'flex',paddingRight:'3vw'}}item xs={4}>
-          <Button  variant ="contained">
-            Atualizar Dados
-          </Button>
-        </Grid>
 
         <Grid xs={12}sx={{ flex:1,border:0,alignItems:'center',justifyContent:'center',display:'flex',pt:'3vw',pl:'3vw',pr:'3vw'}}>
           <Paper elevation={4} sx={{flex:1}}>
@@ -63,8 +50,11 @@ export default function Consultas () {
                   disabled
                   multiline
                   rows={6}
-                  defaultValue="Supecunol Spray - 3x por dia durante 4 dias"
+                  defaultValue={  planos[(planos.map(plano => plano.Animal)).indexOf(page)].Tratamento }
                   variant="filled"
+
+                 
+
                 />
             </Stack>
           </Paper>
@@ -82,7 +72,7 @@ export default function Consultas () {
                   disabled
                   multiline
                   rows={6}
-                  defaultValue="Supecunol Spray - 3x por dia durante 4 dias"
+                  defaultValue={  planos[(planos.map(plano => plano.Animal)).indexOf(page)].Nutricao }
                   variant="filled"
                 />
             </Stack>
