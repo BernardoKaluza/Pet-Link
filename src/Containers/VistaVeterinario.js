@@ -24,6 +24,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 
+
+
 export default function VistaVeterinario () {
 
   const theme = { //Chat shit
@@ -38,76 +40,7 @@ export default function VistaVeterinario () {
     userFontColor: '#4a4a4a',
   };
  
-  const steps = [
-    {
-      id: '0',
-      options: [
-        { value: 'Necessito de ajuda', label: 'Necessito de ajuda!', trigger: '1' },],
-      hideInput: true,
-    },
-    {
-      id: '1',
-      message: 'Olá, como posso ajudar?',
-      trigger: '2',
-    },
-    {
-      id: '2',
-      message: "1- Contactar um veterinário",
-      trigger: '3',
-      delay: 1000,
-    },
-    {
-      id: '3',
-      message: "2- Ver as perguntas frequentes",
-      trigger: '4',
-      delay:0,
-    },
-    {
-      id: '4',
-      options: [
-        { value: 'Necessito de contactar um veterinário', label: '1', trigger: '5' },
-        { value: 'Quero ver as perguntas frequentes', label: '2', trigger: '6' },
-      ],
-    },
-    {
-      id: '5',
-      message: "Um veterinário entrará em contacto brevemente... ",
-      trigger: '7',
-    },
-    {
-      id: '6',
-      message: "vou redirecioná-lo/a para a página de perguntas frequentes... ",
-      trigger: '4',
-    }, 
-    {
-      id: '7',
-      message: "Com que animal necessita de ajuda? ",
-      trigger:'9'
-    },
-    {
-      id: '9',
-      options: [
-        { value: 1, label: '1', trigger: '8' },
-        { value: 2, label: '2', trigger: '8' },
-        { value: 3, label: '3', trigger: '8' },
-      ],
-    },
-    
-
-    {
-      id: '8',
-      message: "Olá, como posso ajudar?",
-      avatar: 'https://www.aavmc.org/wp-content/uploads/2020/09/babylak-for-cc.jpg',
-      trigger:'10',
-    },
-    {
-      id: '10',
-      user: true,
-      end: true,
-    },
-
-  ];
-
+  
 
 
     

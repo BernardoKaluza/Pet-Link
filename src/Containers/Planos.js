@@ -10,6 +10,7 @@ import Pagination from '@mui/material/Pagination';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import { planos } from "../data/planos";
+import { useSelector } from "react-redux";
 
 
 
@@ -24,7 +25,9 @@ export default function Consultas () {
   const handleChange = (event, value) => {
     setPage(value);
   };
-  let nanimais = localStorage.getItem("numeroAnimais");
+
+  let animais = useSelector(state => state.caes.caes);
+  let nanimais = animais.length
   
 
   
@@ -50,10 +53,9 @@ export default function Consultas () {
                   disabled
                   multiline
                   rows={6}
-                  defaultValue={  planos[(planos.map(plano => plano.Animal)).indexOf(page)].Tratamento }
+                  defaultValue={  animais[page-1].Tratamento }
                   variant="filled"
 
-                 
 
                 />
             </Stack>
@@ -72,7 +74,7 @@ export default function Consultas () {
                   disabled
                   multiline
                   rows={6}
-                  defaultValue={  planos[(planos.map(plano => plano.Animal)).indexOf(page)].Nutricao }
+                  defaultValue={   animais[page-1].Nutricao }
                   variant="filled"
                 />
             </Stack>

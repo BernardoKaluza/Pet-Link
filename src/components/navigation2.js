@@ -29,7 +29,7 @@ import { render } from "@testing-library/react";
 
 const drawerWidth = 240;
 
-export default function Navigation(props) {
+export default function Navigation2(props) {
   const settings = ['Perfil', 'Logout'];
 
 
@@ -97,12 +97,7 @@ export default function Navigation(props) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-                <Link to={'/Perfil'} style={{textDecoration: 'inherit', color: 'inherit'}}>
-                    <MenuItem key={'Perfil'} onClick={handleCloseUserMenu}>
-                    
-                    <Typography textAlign="center">{'Perfil'}</Typography>
-                    </MenuItem>
-                </Link>
+    
                 <Link to={'/Login'} style={{textDecoration: 'inherit', color: 'inherit'}}>
                 <MenuItem key={'Logout'} onClick={ () => {handleCloseUserMenu(); props.setLogin(false);} }>
                   <Typography textAlign="center">{'Logout'}</Typography>
@@ -140,56 +135,20 @@ export default function Navigation(props) {
             
             {/* --------------------------------------ITEM DA SIDEBAR-------------------------------------------------------- */}
 
-            <Link to={'/Consultas'} style={{textDecoration: 'inherit', color: 'inherit'}}>
+            <Link to={'/darconsulta'} style={{textDecoration: 'inherit', color: 'inherit'}}>
                 <ListItemButton selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)} >    {/*numero tem de ser diferente para o highlight funcionar */}
                 <ListItemIcon >
                     <CalendarMonthIcon /> {/*escolher icone*/}
                 </ListItemIcon>
                 
-                <ListItemText primary="Planos" /> {/*CONSULTAS*/}
+                <ListItemText primary="Ver Animal" /> {/*CONSULTAS*/}
                 </ListItemButton>
             </Link>
             {/* --------------------------------------ITEM DA SIDEBAR-------------------------------------------------------- */}
-            <Link to={'/EscolhaClinica'} style={{textDecoration: 'inherit', color: 'inherit'}}>
-                <ListItemButton
-                selected={selectedIndex === 1}
-                onClick={(event) => handleListItemClick(event, 1)}
-                >
-                <ListItemIcon>
-                    <MenuBookIcon />
-                </ListItemIcon>
-
-                <ListItemText primary="Marcações" />  {/*MARCACOES*/}
-                </ListItemButton>
-                </Link>
+            
           </List>
 
           <Divider />
-
-          <List component="nav" aria-label="main mailbox folders">
-            <Link to={'/Loja'} style={{textDecoration: 'inherit', color: 'inherit'}}>
-            <ListItemButton
-              selected={selectedIndex === 2}
-              onClick={(event) => handleListItemClick(event, 2)}
-            >
-              <ListItemIcon>
-                <LocalMallIcon />
-              </ListItemIcon>
-              <ListItemText primary="Loja" /> {/* LOJA */}
-            </ListItemButton>
-            </Link>
-           <Link to={'/Cart'} style={{textDecoration: 'inherit', color: 'inherit'}}>
-            <ListItemButton
-              selected={selectedIndex === 3}
-              onClick={(event) => handleListItemClick(event, 3)}
-            >
-              <ListItemIcon>
-                <ShoppingCartIcon />
-              </ListItemIcon>
-              <ListItemText primary="Carrinho" />              {/*CARRINHO*/}
-            </ListItemButton>
-            </Link>
-          </List>
        
       </Drawer>
       <Box

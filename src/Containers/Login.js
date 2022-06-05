@@ -14,6 +14,25 @@ import NavbarLogin from '../components/NavbarLogin'
 
 
 function Login  (props)  {
+
+  const[username,usernameHook]=React.useState('')
+
+  const setUsername=(value) =>{
+
+    usernameHook(value)
+    localStorage.setItem("username",value)
+  }
+
+  const HandleLogin = () =>{
+    if (username==='vet'){
+      props.setVet(true)
+      props.setLogin(true)
+    }
+    else{
+      props.setVet(false)
+      props.setLogin(true)
+    }
+  }
   return (
     <>
 
@@ -24,7 +43,7 @@ function Login  (props)  {
             <Avatar  alt="ERROR" src={ require("../image/logo.webp")}  sx={{height: "100%",width:'15vw'}} />
           </Grid>
           <Grid item xs={12} sx={{height:'5vw',justifyContent:'center',alignItems:'center',display: 'flex'}}>
-            <TextField variant='outlined' label ='Nome de Utilizador' sx ={{width:'99%'}}>
+            <TextField onChange={(e) => setUsername(e.target.value)} variant='outlined' label ='Nome de Utilizador' sx ={{width:'99%'}}>
             </TextField>
           </Grid>
           <Grid item xs={12} sx={{height:'5vw',justifyContent:'center',alignItems:'center',display: 'flex'}}>
@@ -38,7 +57,7 @@ function Login  (props)  {
           </Grid>
           <Grid item xs={12} sx={{justifyContent:'center',alignItems:'center',display: 'flex'}}>
             <NavLink to='/Home'>
-              <Button variant='contained' onClick={() =>{props.setLogin(true)}}>
+              <Button variant='contained' onClick={HandleLogin}>
                       Login
               </Button>
             </NavLink>

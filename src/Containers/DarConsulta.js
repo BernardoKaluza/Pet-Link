@@ -21,7 +21,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import List from '@mui/material/List';
 
-import { useState, useEffect } from 'react';
+import { updatecao } from "../features/caes/CaesSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
@@ -122,6 +123,10 @@ const theme = { //Chat shit
 
 export default function DarConsulta () {
 
+  const animais = useSelector(state => state.caes.caes);
+  const dispatch = useDispatch();
+  const [tratamento, settratamento] = React.useState(animais[0].Tratamento);
+  const [nutricao, setnutricao] = React.useState(animais[0].Nutricao);
   const [page, setPage] = React.useState(1);
   const [vacinapopup,toggleVacinaHook] = React.useState('false')
   const [numeroAnimais,numeroAnimaisHook] = React.useState(parseInt(localStorage.getItem('numeroAnimais')))
@@ -130,9 +135,28 @@ export default function DarConsulta () {
     setPage(value);
   };
 
+  const setTratamento = (e) => {
+    settratamento(e);
+
+    let thisAnimal = {   
+      Animal : 1, changes: [{Tratamento: e}]
+    }
+
+    dispatch(updatecao(thisAnimal));
+  }
+  const setNutricao = (e) => {
+    setnutricao(e);
+    let thisAnimal = {   
+      Animal : 1, changes: [{Nutricao: e}]
+    }
+    dispatch(updatecao(thisAnimal));
+  }
+
   const toggleVacina = () =>{
     toggleVacinaHook(!vacinapopup)
   }
+
+ 
 
   return(
     <>
@@ -141,11 +165,10 @@ export default function DarConsulta () {
         
         <Grid container item xs={12}>
             <Grid item xs={6} sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}>
-              <Avatar variant ='square'sx={{height:'11vw',width:'11vw'}}src={require("../image/husky.jpg")} /> 
+              <Avatar variant ='square'sx={{height:'11vw',width:'11vw'}}src={animais[0].url} /> 
             </Grid>
           <Grid item xs={6} sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}>
             <Stack>
-                <h1>Pantufa</h1>
                 <Button variant="outlined">Atualizar ficha</Button>
             </Stack>
           </Grid>
@@ -156,7 +179,7 @@ export default function DarConsulta () {
             <Stack sx={{flex:1}}>
                 <Grid container  sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}>
                     <Grid item xs={2}  sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}>
-                        <h3>Dia 31/2/22</h3>
+                        
                     </Grid>
                     <Grid item xs={10}  sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex',pr:'5vw'}}>
                         <h1>Plano de tratamento</h1>
@@ -166,8 +189,9 @@ export default function DarConsulta () {
                 sx={{pr:'2vw',pl:'2vw',pb:'2vw'}}
                 id="filled-multiline-static"
                 multiline
+                onChange={(e) => setTratamento(e.target.value)}
                 rows={6}
-                defaultValue= ""
+                defaultValue= { animais[0].Tratamento }
                 variant="filled"
                 />
             </Stack>
@@ -189,8 +213,9 @@ export default function DarConsulta () {
                 sx={{pr:'2vw',pl:'2vw',pb:'2vw'}}
                 id="filled-multiline-static"
                 multiline
+                onChange={(e) => setNutricao(e.target.value)}
                 rows={6}
-                defaultValue= ""
+                defaultValue= { animais[0].Nutricao }
                 variant="filled"
                 
                 />
@@ -206,66 +231,73 @@ export default function DarConsulta () {
         <Grid item xs={12} >
         <Paper elevation={4} sx={{flex:1}}>
             
-            <List sx={{maxHeight:"26.8vw", overflow: "auto"}}>
-      
-              <ListItem>
-                <ListItemText
-                  primary="Nome:"
-                  secondary={'Fuzz'}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Peso:"
-                  secondary={'15kg'}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Última Consulta:"
-                  secondary={'04/06/2022'}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Chip?"
-                  secondary={'Sim'}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Raça:"
-                  secondary={'Husky'}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Espécie:"
-                  secondary={'Cão'}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Vacinas:"
-                  secondary= {<div onClick={toggleVacina}>
-                  <Avatar on sx={{display:'flex' }}src={require("../image/bell.png")} />
-                    <paper >
-                    <Dialog onClose={toggleVacina} open={!vacinapopup} >
-                      <DialogTitle>
-                          Vacinas
-                      </DialogTitle>
-                        <h2>Vacina 1</h2>
-                        <h2>Vacina 3</h2>
-                        <h2>Vacina 4</h2>
-                        <h2>Vacina 5</h2>
+        <List sx={{maxHeight:"26.8vw", overflow: "auto"}}>
+                <ListItem>
+                  <ListItemText
+                    primary="Dados:"
+                  />
+                  <Divider />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Nome:"
+                    secondary={animais[page-1].Nome}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Peso:"
+                    secondary={animais[page-1].Peso}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Última Consulta:"
+                    secondary={animais[page-1].UltimaConsulta}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Chip?"
+                    secondary={animais[page-1].Chip}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Raça:"
+                    secondary={animais[page-1].Raca}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Espécie:"
+                    secondary={animais[page-1].Especie}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Vacinas:"
+                    secondary= {<div onClick={toggleVacina}>
+                    <Avatar on sx={{display:'flex' }}src={require("../image/bell.png")} />
+                      <paper >
+                        <Dialog onClose={toggleVacina} open={!vacinapopup} >
+                          <DialogTitle>
+                              Vacinas
+                          </DialogTitle>
+                            <h2>Vacina 1</h2>
+                            <h2>Vacina 3</h2>
+                            <h2>Vacina 4</h2>
+                            <h2>Vacina 5</h2>
 
-                      
-                      </Dialog>
+
+                        </Dialog>
                       </paper>
-                </div>}
-                />
-              </ListItem>
-            </List>
+                  </div>}
+                  />
+                </ListItem>
+
+
+              </List>
           </Paper>
         </Grid>
 

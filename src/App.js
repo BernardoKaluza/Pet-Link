@@ -5,7 +5,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Containers/Home'
 import Perfil from './Containers/Perfil'
 import Cart from './Containers/Cart'
-import Consultas from './Containers/Consultas';
+import Consultas from './Containers/Planos';
 import Loja from './Containers/Loja';
 import Marcacoes from './Containers/Marcacoes'
 import Login from './Containers/Login'
@@ -20,7 +20,7 @@ import DarConsulta from './Containers/DarConsulta';
 
 import VistaVeterinario from './Containers/VistaVeterinario';
 
-
+import Navigation2 from './components/navigation2';
 
 import { ThemeProvider, createTheme} from '@mui/material/styles';
 
@@ -50,36 +50,81 @@ function App() {
       localStorage.setItem('login', login)
     }
   
- 
-  return (
-   
-    <ThemeProvider theme={theme}>
-    <Router>
-
-     { login && <Navigation setLogin={setLogin} /> } {/* //! TROCAR PARA LOGIN */}
-     
-      <Routes>
-
-      <Route path='/' element={<Home/>} />
-      <Route path='/home' element={<Home/>} />
-      <Route path='/Perfil' element={<Perfil/>} />
-      <Route path='/Login' element={<Login setLogin={setLogin}/>} />
-      <Route path='/Register' element={<Register/>} />
-      <Route path='/Cart' element={<Cart/>} />
-      <Route path='/Consultas' element={<Consultas/>} />
-      <Route path='/Loja' element={<Loja/>} />
-      <Route path='/Marcacoes' element={<Marcacoes />} />
-      <Route path='/EscolhaClinica' element={<EscolhaClinica/>} />
-      <Route path='/DarConsulta' element={<DarConsulta/>} />
-      <Route path='/VistaVeterinario' element={<VistaVeterinario/>} />
+    var[vet, setVet] = React.useState(false);
 
 
+
+  if (login == false) {
+    return (
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
+          
+            <Route path='/Login' element={<Login setLogin={setLogin} setVet={setVet} />} />
+            <Route path='/Register' element={<Register/>} />
+            <Route path="*" element={<Login setLogin={setLogin}/>} />
+
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    )
+  }
+
+
+  
+  else if (vet == false) {
+    return (
+    
+      <ThemeProvider theme={theme}>
+      <Router>
+
+      { login && <Navigation setLogin={setLogin} /> } {/* //! TROCAR PARA LOGIN */}
       
+        <Routes>
 
-      </Routes>
-    </Router>
-    </ThemeProvider>
-  );
+        <Route path='/' element={<Home/>} />
+        <Route path='/home' element={<Home/>} />
+        <Route path='/Perfil' element={<Perfil/>} />
+        <Route path='/Cart' element={<Cart/>} />
+        <Route path='/Consultas' element={<Consultas/>} />
+        <Route path='/Loja' element={<Loja/>} />
+        <Route path='/Marcacoes' element={<Marcacoes />} />
+        <Route path='/EscolhaClinica' element={<EscolhaClinica/>} />
+        <Route path='/DarConsulta' element={<DarConsulta/>} />
+        <Route path='/VistaVeterinario' element={<VistaVeterinario/>} />
+        <Route path='*' element={<Home/>} />
+
+
+        
+
+        </Routes>
+      </Router>
+      </ThemeProvider>
+    );
+  }
+  else {
+    return(
+      <ThemeProvider theme={theme}>
+      <Router>
+
+      { login && <Navigation2 setLogin={setLogin} /> } {/* //! TROCAR PARA LOGIN */}
+      
+        <Routes>
+        <Route path='/' element={<VistaVeterinario/>} />
+        <Route path='/Home' element={<VistaVeterinario/>} />
+        <Route path='/DarConsulta' element={<DarConsulta/>} />
+        <Route path='/VistaVeterinario' element={<VistaVeterinario/>} />
+        <Route path='*' element={<vistaVeterinario/>} />
+
+
+        
+
+        </Routes>
+      </Router>
+      </ThemeProvider>
+
+    )
+  }
 
 }
 
