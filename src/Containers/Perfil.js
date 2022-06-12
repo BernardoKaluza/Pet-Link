@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar2 from '../components/Navbar2'
 import { NavLink } from 'react-router-dom';
 
 import Avatar from '@mui/material/Avatar';

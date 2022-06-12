@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-import Navbar2 from '../components/Navbar2'
 import { stores } from '../data/utentes.js'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/system/Box';

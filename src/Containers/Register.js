@@ -9,12 +9,10 @@ import TextField from '@mui/material/TextField';
 import { NavLink } from 'react-router-dom';
 
 
-import NavbarRegister from '../components/NavbarRegister';
 
 function Register  ()  {
   return (
     <>
-      <NavbarRegister />
       <Container sx={{width:'30vw'}} >
         <Grid container spacing={1}>
           <Grid item xs={12} sx={{height:'23vw',Width:"flex",justifyContent:'center',allignItems:'center',display: 'flex'}}>
@@ -33,7 +31,7 @@ function Register  ()  {
             </TextField>
           </Grid>
           <Grid item xs={12} sx={{height:'5vw',justifyContent:'center',alignItems:'center',display: 'flex'}}>
-            <NavLink to='/Home'>
+            <NavLink to='/Checkout'>
               <Button variant='contained'>
                       Registar
               </Button>

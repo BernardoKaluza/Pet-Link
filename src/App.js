@@ -22,6 +22,8 @@ import VistaVeterinario from './Containers/VistaVeterinario';
 
 import Navigation2 from './components/navigation2';
 
+import Checkout from './Containers/Checkout'
+
 import { ThemeProvider, createTheme} from '@mui/material/styles';
 
 
@@ -92,8 +94,10 @@ function App() {
         <Route path='/EscolhaClinica' element={<EscolhaClinica/>} />
         <Route path='/DarConsulta' element={<DarConsulta/>} />
         <Route path='/VistaVeterinario' element={<VistaVeterinario/>} />
-        <Route path='*' element={<Home/>} />
+        
+        <Route path='/Checkout' element ={<Checkout/>}/>
 
+        <Route path='*' element={<Home/>} />
 
         
 

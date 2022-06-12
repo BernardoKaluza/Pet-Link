@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Pagination from '@mui/material/Pagination';
 import Paper from '@mui/material/Paper';
-
+import Calendario from '../components/calendariovet'
 import ChatBot from 'react-simple-chatbot';
 
 import { ThemeProvider } from 'styled-components';
@@ -119,7 +119,7 @@ export default function VistaVeterinario () {
         </Grid>
 
         <Grid  item xs={12}  sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex',height:'30vw'}}>
-            CALENDARIO
+           <Calendario />
         </Grid>
     </Grid>
 

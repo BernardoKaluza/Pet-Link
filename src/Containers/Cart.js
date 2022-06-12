@@ -2,9 +2,18 @@
 import * as React from "react";
 
 import ChatBot from 'react-simple-chatbot';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 
+
+
+import { NavLink } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+
 let renderCounter = 0;
+
+
 
 export default function Cart () {
     
@@ -29,34 +38,15 @@ export default function Cart () {
 
 
   return(
-
-   
-    <div style = {{ marginLeft: '240px'}} >
-     <ThemeProvider  theme={theme}>
-      <ChatBot steps={[
-         {
-          id: '1',
-          message: 'What is your name?',
-          trigger: '2',
-        },
-        {
-          id: '2',
-          user: true,
-          trigger: '3',
-        },
-        {
-          id: '3',
-          message: 'Hi {previousValue}, nice to meet you!',
-          end: true,
-        },
-          
-        ]} />;
-      </ThemeProvider>
-
-    </div>
-
-
-
+<>
+    <Grid container sx={{pl:'240px'}}>
+      <NavLink to='/Checkout'>
+        <Button variant='contained'>
+                Registar
+        </Button>
+      </NavLink>
+    </Grid>
+</>
 
   )
 }
