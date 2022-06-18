@@ -33,7 +33,6 @@ export default function Navigation2(props) {
   const settings = ['Perfil', 'Logout'];
 
 
-
   const [selectedIndex, setSelectedIndex] = React.useState('');
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

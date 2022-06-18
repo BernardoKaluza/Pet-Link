@@ -64,7 +64,7 @@ function EscolhaClinica() {
 
         <Grid item xs={8} sx={{border:3,borderRight:0,borderLeft:0,borderColor:'#0091d5',alignItems:'center',justifyContent:'center',display:'flex',pr:'1vw',pl:'1vw'}}>
 
-                <Button variant="outlined"sx={{flex:1}} component={Link} to="/some-route" >
+                <Button variant="outlined"sx={{flex:1}} component={Link} to="/Home" >
                     Pagar
                 </Button>
 

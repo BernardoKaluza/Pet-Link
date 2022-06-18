@@ -24,11 +24,15 @@ function Login  (props)  {
 
   const HandleLogin = () =>{
     if (username==='vet'){
+      console.log("aqui")
+      localStorage.setItem('login', true)
       props.setVet(true)
       props.setLogin(true)
     }
     else{
+      console.log("aqui")
       props.setVet(false)
+      localStorage.setItem('login', true)
       props.setLogin(true)
     }
   }
@@ -54,10 +58,19 @@ function Login  (props)  {
                 <FormControlLabel control={<Checkbox defaultChecked />} label="Manter Sessão Iniciada" />
              </FormGroup>
           </Grid>
-          <Grid item xs={12} sx={{justifyContent:'center',alignItems:'center',display: 'flex'}}>
+          <Grid item xs={6} sx={{justifyContent:'center',alignItems:'center',display: 'flex'}}>
             <NavLink to='/Home'>
               <Button variant='contained' onClick={HandleLogin}>
                       Login
+              </Button>
+           
+            </NavLink>
+           
+          </Grid>
+          <Grid item xs={6} sx={{justifyContent:'center',alignItems:'center',display: 'flex'}}>
+            <NavLink to='/Register'>
+              <Button variant='contained'>
+                          Register
               </Button>
             </NavLink>
           </Grid>

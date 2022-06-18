@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
+import { useNavigate  } from 'react-router-dom';
+
+
 import { AppointmentPicker } from 'react-appointment-picker';
 const data = new Date();
 data.setHours(9, 0, 0, 0);
   
+//const navigate = useNavigate();
 export default class Calendario extends Component {
   state = {
     continuousLoading: false
@@ -17,6 +21,7 @@ export default class Calendario extends Component {
     removedAppointment: params,
     removeCb
   }) => {
+    //navigate("/DarConsulta")
     this.setState(
     
       async () => {

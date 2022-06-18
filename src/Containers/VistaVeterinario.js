@@ -11,7 +11,7 @@ import Calendario from '../components/calendariovet'
 import ChatBot from 'react-simple-chatbot';
 
 import { ThemeProvider } from 'styled-components';
-
+import { NavLink } from "react-router-dom";
 import Navigation from '../components/navigation'
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -98,9 +98,9 @@ export default function VistaVeterinario () {
   return(
     <>
   
-    <Grid container sx={{paddingLeft:'240px',border:1}} spacing={1}>
+    <Grid container sx={{paddingLeft:'240px',border:0}} spacing={1}>
 
-        <Grid item xs={12} sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex'}}>
+        <Grid item xs={12} sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex'}}>
             <Paper
                 component="form"
                 sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
@@ -112,13 +112,15 @@ export default function VistaVeterinario () {
                 />
                 <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                 <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-                    <SearchIcon />
+                    <NavLink to="/DarConsulta">
+                      <SearchIcon />
+                    </NavLink>
                 </IconButton>
                 
             </Paper>
         </Grid>
 
-        <Grid  item xs={12}  sx={{border:1,alignItems:'center',justifyContent:'center',display:'flex',height:'30vw'}}>
+        <Grid  item xs={12}  sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex',height:'30vw'}}>
            <Calendario />
         </Grid>
     </Grid>

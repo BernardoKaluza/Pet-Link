@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
-import { stores } from '../data/utentes.js'
+import { stores, hospitals } from '../data/utentes.js'
+
 import Grid from '@mui/material/Grid';
 import Box from '@mui/system/Box';
 import Button from '@mui/material/Button';
@@ -59,7 +60,7 @@ function EscolhaClinica() {
   
             onInputChange={ (event,value) => handleBlockCas(event,value) }
 
-            options={stores.map((option) => option.Name)} //aqui muda se o atributo no utentes.js na oasta data
+            options={hospitals.map((option) => option.Name)} //aqui muda se o atributo no utentes.js na oasta data
             renderInput={(params) => (
               <TextField
                 clear

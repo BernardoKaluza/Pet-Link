@@ -33,11 +33,14 @@ export default function Navigation(props) {
   const settings = ['Perfil', 'Logout'];
 
 
-
+  
   const [selectedIndex, setSelectedIndex] = React.useState('');
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
 
   
+
+
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
 
@@ -104,7 +107,7 @@ export default function Navigation(props) {
                     </MenuItem>
                 </Link>
                 <Link to={'/Login'} style={{textDecoration: 'inherit', color: 'inherit'}}>
-                <MenuItem key={'Logout'} onClick={ () => {handleCloseUserMenu(); props.setLogin(false);} }>
+                <MenuItem key={'Logout'} onClick={ () => {localStorage.setItem('login',false);handleCloseUserMenu(); props.setLogin(false);} }>
                   <Typography textAlign="center">{'Logout'}</Typography>
                 </MenuItem>
                 </Link>
@@ -186,7 +189,8 @@ export default function Navigation(props) {
               <ListItemIcon>
                 <ShoppingCartIcon />
               </ListItemIcon>
-              <ListItemText primary="Carrinho" />              {/*CARRINHO*/}
+               {/*Show cartcount*/}
+              <ListItemText primary={`Carrinho (${props.cart===null ? Object.values(JSON.parse(localStorage.getItem('Comidas'))).reduce((a, b) => a + b)+Object.values(JSON.parse(localStorage.getItem('Brinquedos'))).reduce((a, b) => a + b) : props.cart})`} />
             </ListItemButton>
             </Link>
           </List>

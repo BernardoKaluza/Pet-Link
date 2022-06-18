@@ -16,6 +16,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import ListItemButton from '@mui/material/ListItemButton';
+import TextField from '@mui/material/TextField';
 
 import Dialog from '@mui/material/Dialog';
 import Box from '@mui/material/Box';
@@ -34,9 +35,10 @@ import FormLabel from '@mui/material/FormLabel';
 function Perfil ()  {
 
   const [PopupMensalidade,togglePopupMensalidadeHook] = useState(false)
-  const [tipoMensalidade,setTipoMensalidade] = useState('base')
+  const [tipoMensalidade,setTipoMensalidade] = useState('premium')
   const [render,renderHook] = useState("true")
-
+  const [email,setEmail] = useState(localStorage.getItem('email')===null ? "saragoncalves@email.com" : localStorage.getItem('email'))
+  const [contacto,setContacto] = useState(localStorage.getItem('contacto')===null ? "928022049" : localStorage.getItem('contacto'))
   const handleChangeMensalidade = (event,value) => {
     setTipoMensalidade(value)
     console.log(value)
@@ -58,6 +60,18 @@ function Perfil ()  {
 
     togglePopupMensalidadeHook(!PopupMensalidade)
   }
+
+  const updateContacto = (e) => {
+    setContacto(e);
+
+    localStorage.setItem('contacto',e)
+  }
+  const updateEmail = (e) => {
+    setEmail(e);
+
+    localStorage.setItem('email',e)
+  }
+
 
   useEffect(() => {  
     if(render=="true"){
@@ -90,16 +104,12 @@ function Perfil ()  {
                     />
                   </ListItem>
                   <ListItem>
-                    <ListItemText
-                      primary="Contacto:"
-                      secondary={'912345678'}
-                    />
+                    <TextField id="standard-basic" label="E-Mail" variant="standard"  defaultValue={email} onChange={(e) => updateEmail(e.target.value)} />
+
                   </ListItem>
                   <ListItem>
-                    <ListItemText
-                      primary="E-mail:"
-                      secondary={'SaraGonçalves@as.pt'}
-                    />
+                    <TextField id="standard-basic" label="Contacto" variant="standard"  defaultValue={contacto} onChange={(e) => updateContacto(e.target.value)}/>
+
                   </ListItem>
                   <ListItem>
                     <ListItemText

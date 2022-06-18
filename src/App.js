@@ -41,22 +41,19 @@ const theme = createTheme({
 
 
 function App() {
+
+  const [login, setLogin] = React.useState(JSON.parse(localStorage.getItem('login')));
+  console.log(login + 'login')
+  const[vet, setVet] = React.useState(false);
   
-    var local = (localStorage.getItem('login'))
-    if ( local === null) {
-      var [login, setLogin] = React.useState(false);
-      localStorage.setItem('login', false)
-    }
-    else {
-      var [login, setLogin] = React.useState(local);
-      localStorage.setItem('login', login)
-    }
+
+  const [cartcount,setCart] = React.useState(JSON.parse(localStorage.getItem('cartcount')));
+
   
-    var[vet, setVet] = React.useState(false);
 
 
 
-  if (login == false) {
+  if (login === false) {
     return (
       <ThemeProvider theme={theme}>
         <Router>
@@ -64,7 +61,9 @@ function App() {
           
             <Route path='/Login' element={<Login setLogin={setLogin} setVet={setVet} />} />
             <Route path='/Register' element={<Register/>} />
-            <Route path="*" element={<Login setLogin={setLogin}/>} />
+            <Route path='*' element={<Login setLogin={setLogin} setVet={setVet} />} />
+            <Route path='/Checkout' element ={<Checkout/>}/>
+
 
           </Routes>
         </Router>
@@ -74,22 +73,23 @@ function App() {
 
 
   
-  else if (vet == false) {
+  else if (vet === false) {
+    console.log(login)
     return (
     
       <ThemeProvider theme={theme}>
       <Router>
 
-      { login && <Navigation setLogin={setLogin} /> } {/* //! TROCAR PARA LOGIN */}
+      { login && <Navigation setLogin={setLogin} cart={cartcount} /> } {/* //! TROCAR PARA LOGIN */}
       
         <Routes>
 
         <Route path='/' element={<Home/>} />
         <Route path='/home' element={<Home/>} />
         <Route path='/Perfil' element={<Perfil/>} />
-        <Route path='/Cart' element={<Cart/>} />
+        <Route path='/Cart' element={<Cart setCart={setCart} cart={cartcount} />} />
         <Route path='/Consultas' element={<Consultas/>} />
-        <Route path='/Loja' element={<Loja/>} />
+        <Route path='/Loja' element={<Loja setCart={setCart} cart={cartcount}/>} />
         <Route path='/Marcacoes' element={<Marcacoes />} />
         <Route path='/EscolhaClinica' element={<EscolhaClinica/>} />
         <Route path='/DarConsulta' element={<DarConsulta/>} />
@@ -97,7 +97,6 @@ function App() {
         
         <Route path='/Checkout' element ={<Checkout/>}/>
 
-        <Route path='*' element={<Home/>} />
 
         
 
