@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "4ee010b7582b3129570b",
-    "url": "/Pet-Link/static/js/main.527558a6.chunk.js"
+    "revision": "a512c241c7ffeff48e93",
+    "url": "/Pet-Link/static/js/main.151a5e60.chunk.js"
   },
   {
     "revision": "01d2ebf4f7752041d4cf",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/Pet-Link/static/media/avatar2.acf51304.jpg"
   },
   {
-    "revision": "fd40784c6528ddd6023c2c0794724192",
+    "revision": "2e9ac5b8e69228157eb29fc3e9da6725",
     "url": "/Pet-Link/index.html"
   }
 ];
