@@ -11,7 +11,7 @@ import Calendario from '../components/calendariovet'
 import ChatBot from 'react-simple-chatbot';
 
 import { ThemeProvider } from 'styled-components';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Navigation from '../components/navigation'
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -23,8 +23,9 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-
-
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import List from '@mui/material/List';
 
 export default function VistaVeterinario () {
 
@@ -40,9 +41,89 @@ export default function VistaVeterinario () {
     userFontColor: '#4a4a4a',
   };
  
+  const steps = [
+    {
+      id: '0',
+      message: 'Necessito de ajuda!',
+      trigger: '5',
+    },
+    {
+      id: '5',
+      options: [
+        { value: 'Necessito de ajuda', label: 'Aceitar', trigger: '1' },],
+      hideInput: true,
+    },
+
+    {
+      id: '1',
+      message: 'Animal: Fuzz',
+      trigger: '2',
+    },
+    {
+      id: '2',
+      component:<List>
+      <ListItem>
+        <ListItemText
+          primary="Dados:"
+        />
+        <Divider />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary="Nome:"
+          secondary={'Fuzz'}
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary="Peso:"
+          secondary={'15kg'}
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary="Última Consulta:"
+          secondary={'04/06/2022'}
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary="Chip?"
+          secondary={'Sim'}
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary="Raça:"
+          secondary={'Husky'}
+        />
+      </ListItem>
+      <ListItem>
+        <ListItemText
+          primary="Espécie:"
+          secondary={'Cão'}
+        />
+      </ListItem>
+      
+
+
+    </List  >,
+
+      trigger: '3',
+      delay: 1500,
+    },
+    
+    {
+      id: '3',
+      user: true,
+      delay: 300,
+      trigger:'3'
+    },
+
+  ];
   
 
-
+  const navigation = useNavigate();
     
   const backgroundImage = require("../image/husky.jpg");
 
@@ -121,9 +202,12 @@ export default function VistaVeterinario () {
         </Grid>
 
         <Grid  item xs={12}  sx={{border:0,alignItems:'center',justifyContent:'center',display:'flex',height:'30vw'}}>
-           <Calendario />
+           <Calendario navigation={ navigation }/>
         </Grid>
     </Grid>
+    <ThemeProvider theme={theme}>
+    <ChatBot placeholder={"Escreva uma mensagem..."} userAvatar={"https://www.aavmc.org/wp-content/uploads/2020/09/babylak-for-cc.jpg"} botAvatar={"https://cdn.discordapp.com/attachments/631543998422581248/982692964767760426/unknown.png?size=4096"} steps={steps} floating={true} />;
+    </ThemeProvider>
 
     </>
   )

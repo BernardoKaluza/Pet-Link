@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Pet-Link/precache-manifest.970323f26291043e15daeb5099a73529.js"
+  "/Pet-Link/precache-manifest.7556b5d33352dd0e13dc13da163e0ea6.js"
 );
 
 workbox.clientsClaim();

@@ -190,7 +190,7 @@ export default function Navigation(props) {
                 <ShoppingCartIcon />
               </ListItemIcon>
                {/*Show cartcount*/}
-              <ListItemText primary={`Carrinho (${props.cart===null ? Object.values(JSON.parse(localStorage.getItem('Comidas'))).reduce((a, b) => a + b)+Object.values(JSON.parse(localStorage.getItem('Brinquedos'))).reduce((a, b) => a + b) : props.cart})`} />
+              <ListItemText primary={`Carrinho (${props.cart===null ? ((localStorage.getItem('Comidas') != null) || (localStorage.getItem('Brinquedos')!=null) ? Object.values(JSON.parse(localStorage.getItem('Comidas'))).reduce((a, b) => a + b)+Object.values(JSON.parse(localStorage.getItem('Brinquedos'))).reduce((a, b) => a + b) : 0) : props.cart})`} />
             </ListItemButton>
             </Link>
           </List>

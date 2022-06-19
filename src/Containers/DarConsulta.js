@@ -27,98 +27,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-const theme = { //Chat shit
-    background: '#f5f8fb',
-    fontFamily: 'Roboto',
-    headerBgColor: '#ea6a47',
-    headerFontColor: '#fff',
-    headerFontSize: '15px',
-    botBubbleColor: '#ea6a47',
-    botFontColor: '#fff',
-    userBubbleColor: '#fff',
-    userFontColor: '#4a4a4a',
-  };
- 
-  const steps = [
-    {
-      id: '0',
-      message: 'Necessito de ajuda!',
-      trigger: '5',
-    },
-    {
-      id: '5',
-      options: [
-        { value: 'Necessito de ajuda', label: 'Aceitar', trigger: '1' },],
-      hideInput: true,
-    },
 
-    {
-      id: '1',
-      message: 'Animal: Fuzz',
-      trigger: '2',
-    },
-    {
-      id: '2',
-      component:<List>
-      <ListItem>
-        <ListItemText
-          primary="Dados:"
-        />
-        <Divider />
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary="Nome:"
-          secondary={'Fuzz'}
-        />
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary="Peso:"
-          secondary={'15kg'}
-        />
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary="Última Consulta:"
-          secondary={'04/06/2022'}
-        />
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary="Chip?"
-          secondary={'Sim'}
-        />
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary="Raça:"
-          secondary={'Husky'}
-        />
-      </ListItem>
-      <ListItem>
-        <ListItemText
-          primary="Espécie:"
-          secondary={'Cão'}
-        />
-      </ListItem>
-      
-
-
-    </List  >,
-
-      trigger: '3',
-      delay: 1500,
-    },
-    
-    {
-      id: '3',
-      user: true,
-      delay: 300,
-      trigger:'3'
-    },
-
-  ];
 
 
 export default function DarConsulta () {
@@ -323,10 +232,7 @@ export default function DarConsulta () {
       </Grid>
     </Grid>
         
-    <ThemeProvider theme={theme}>
-    <ChatBot placeholder={"Escreva uma mensagem..."} userAvatar={"https://www.aavmc.org/wp-content/uploads/2020/09/babylak-for-cc.jpg"} botAvatar={"https://cdn.discordapp.com/attachments/631543998422581248/982692964767760426/unknown.png?size=4096"} steps={steps} floating={true} />;
-    </ThemeProvider>
-
+   
      
     </>
   )

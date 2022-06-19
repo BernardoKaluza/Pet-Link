@@ -37,8 +37,18 @@ export default function Loja (props) {
     "5":0,
     "6":0,
   }
-    
   
+
+
+  if (JSON.parse(localStorage.getItem('Brinquedos')) == null){
+    localStorage.setItem('Brinquedos',JSON.stringify(ArrBrinquedos))
+  }
+
+  if (JSON.parse(localStorage.getItem('Comidas')) == null){
+    localStorage.setItem('Comidas',JSON.stringify(ArrComida))
+  }
+
+
   const[brinquedos,brinquedosHook]= React.useState(true)
   const[comida,comidaHook]= React.useState(false)
   const [open, setOpen] = React.useState(false);
@@ -69,9 +79,7 @@ export default function Loja (props) {
 
   const AddComida = (value) => {
     
-    if (JSON.parse(localStorage.getItem('Comidas')) == null){
-      localStorage.setItem('Comidas',JSON.stringify(ArrComida))
-    }
+
     ArrComida = JSON.parse(localStorage.getItem('Comidas'))
     ArrComida[value] += 1
     localStorage.setItem("Comidas", JSON.stringify(ArrComida));
@@ -82,15 +90,17 @@ export default function Loja (props) {
   }
   const AddBrinquedo = (value) => {
     
-    if (JSON.parse(localStorage.getItem('Brinquedos')) == null){
-      localStorage.setItem('Brinquedos',JSON.stringify(ArrBrinquedos))
-    }
+
     ArrBrinquedos = JSON.parse(localStorage.getItem('Brinquedos'))
     ArrBrinquedos[value] += 1
     localStorage.setItem("Brinquedos", JSON.stringify(ArrBrinquedos));
    
     props.setCart(Object.values(JSON.parse(localStorage.getItem('Comidas'))).reduce((a, b) => a + b)+Object.values(ArrBrinquedos).reduce((a, b) => a + b))
   }
+
+  // useEffect(() => {
+  //   initialize()
+  // }
 
   return(
 

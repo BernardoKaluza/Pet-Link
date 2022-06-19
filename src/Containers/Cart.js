@@ -23,7 +23,14 @@ import List from '@mui/material/List';
 let renderCounter = 0;
 
 export default function Cart (props) {
-
+  var resetArr = {
+    "1":0,
+    "2":0,
+    "3":0,
+    "4":0,
+    "5":0,
+    "6":0,
+  }
   var ArrComida = {
     "1":1,
     "2":0,
@@ -77,14 +84,7 @@ export default function Cart (props) {
   const[load,setLoad]=React.useState('');
 
   const clearCart = () => {
-    let resetArr = {
-      "1":0,
-      "2":0,
-      "3":0,
-      "4":0,
-      "5":0,
-      "6":0,
-    }
+
     localStorage.setItem("Comidas", JSON.stringify(resetArr));
     localStorage.setItem("Brinquedos", JSON.stringify(resetArr));
     setBrinquedo1(0);
@@ -99,8 +99,8 @@ export default function Cart (props) {
       let comidas = localStorage.getItem('Comidas');
     }
     console.log(JSON.parse(localStorage.getItem('Comidas')));
-    ArrBrinquedos = JSON.parse(localStorage.getItem('Brinquedos'))
-    ArrComida = JSON.parse(localStorage.getItem('Comidas'))
+    ArrBrinquedos = JSON.parse(localStorage.getItem('Brinquedos'))==null ? resetArr : JSON.parse(localStorage.getItem('Brinquedos'));
+    ArrComida = JSON.parse(localStorage.getItem('Comidas')) == null ? resetArr : JSON.parse(localStorage.getItem('Comidas'));
 
 
     setBrinquedo1(ArrBrinquedos['1']);
@@ -525,7 +525,7 @@ export default function Cart (props) {
           Total: xx,xx €
         </Grid>
         <Grid item xs={2} sx={{border:1 ,justifyContent:'center',alignItems:'center',display: 'flex'}}>
-          QTD: {    Object.values(JSON.parse(localStorage.getItem('Comidas'))).reduce((a, b) => a + b)+Object.values(JSON.parse(localStorage.getItem('Brinquedos'))).reduce((a, b) => a + b)}
+          QTD: { (localStorage.getItem('Comidas') != null) || (localStorage.getItem('Brinquedos')!=null) ? Object.values(JSON.parse(localStorage.getItem('Comidas'))).reduce((a, b) => a + b)+Object.values(JSON.parse(localStorage.getItem('Brinquedos'))).reduce((a, b) => a + b) : 0}
         </Grid>
 
         <Grid item xs={1} sx={{border:1 ,justifyContent:'center',alignItems:'center',display: 'flex'}}>

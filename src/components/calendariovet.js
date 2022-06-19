@@ -15,31 +15,9 @@ export default class Calendario extends Component {
 
   
 
-  addAppointmentCallbackContinuousCase = ({
-    addedAppointment: { day, number, time, id },
-    addCb,
-    removedAppointment: params,
-    removeCb
-  }) => {
+  addAppointmentCallbackContinuousCase = ({}) => {
     //navigate("/DarConsulta")
-    this.setState(
     
-      async () => {
-        if (removeCb) {
-          await new Promise((resolve) => setTimeout(resolve, 0));
-          console.log(
-            `Removed appointment ${params.number}, day ${params.day}, time ${params.time}, id ${params.id}`
-          );
-          removeCb(params.day, params.number);
-        }
-        await new Promise((resolve) => setTimeout(resolve, 0));
-        console.log(
-          `Added appointment ${number}, day ${day}, time ${time}, id ${id}`
-        );
-        addCb(day, number, time, id);
-        this.setState({ continuousLoading: false });
-      }
-    );
     prompt('Razão do agendamento');	
   };
 

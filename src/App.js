@@ -42,7 +42,7 @@ const theme = createTheme({
 
 function App() {
 
-  const [login, setLogin] = React.useState(JSON.parse(localStorage.getItem('login')));
+  const [login, setLogin] = React.useState((JSON.parse(localStorage.getItem('login'))==null)?false:JSON.parse(localStorage.getItem('login')));
   console.log(login + 'login')
   const[vet, setVet] = React.useState(false);
   
