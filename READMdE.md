@@ -1,11 +1,17 @@
-npm install styled-components
-npm install react-router-dom react-icons
-npm install @mui/material @emotion/react @emotion/styled
-npm install @fontsource/roboto
-npm install @mui/icons-material
-npm install @mui/icons-material
 
-npm start
+[]: # Language: markdown
+[]: # Path: READMdE.md
 
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
+    PetLink G 401
+
+    A aplicação PetLink pode ser encontrada no [GitHub](https://bernardokaluza.github.io/Pet-Link/)
+
+    Logins disponíveis:
+    para aceder a vista de veterinario
+    username: vet
+    password: (qualquer uma)
+
+    para aceder a vista de cliente
+    username: (qualquer um)
+    password: (qualquer um)
+    
