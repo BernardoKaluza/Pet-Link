@@ -3,6 +3,11 @@
 []: # Path: READMdE.md
 
     PetLink G 401
+    Alexandre Gago - 98123
+    Bernardo Kaluza - 97521
+    João Moura      - 43889
+    Rúben Castelhano - 97688
+    
 
     A aplicação PetLink pode ser encontrada no [GitHub](https://bernardokaluza.github.io/Pet-Link/)
 
